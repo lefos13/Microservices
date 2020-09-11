@@ -1,0 +1,21 @@
+SO THIS PROJECT IS A COURSE PROJECT THAT I FOLLOWED TO LEARN THE BASICS ABOUT MICROSERVICES COMMUNICATION, FAULT TOLERANCE AND RESILIENCE.
+
+At level 1 I learned about:
+-Spring boot, a framework that is used for building spring boot microservices.
+-Dependencies, libraries that will help you with your needs.
+-Resttemplate, a way to communicate with other services.
+-Webclient, another way to communicate between microservices. (asychronous)
+-Eureka server/client, a way for services to communicate without the programmer hardcoding the link of the service everytime. Eureka server acts like a dns server that
+holds the service's names for each one of them. Then eureka clients call for each service with their name without the need to hardcode the server and the port each time. (cool stuf)
+
+At level 2 I learned about:
+- Timeouts, a way to free a thread form the server's thread pool if the service call is too slow. Timeouts basically act like a clock. You configure a time for example 2 secs
+and if a call last more that that then the thread is relieved from the process.
+- Timeouts though are partly a solution to the problem so after that we examined the circuit breaker pattern that introduced a better way to handle this problem.
+So circuit breaker handles this problem with a more complex way. It brings in more parameters to think about and in contrast to a simple timeout, circuit breaker
+completely cuts the connection with a service if its behaviour looks like there is some problem (being really slow or throws errors etc). After some time the system
+communicates again with the service to check if it is ok. If the service looks fine it will add it to the system again. Another extra that i need to mention is that
+circuit breaker offers methods to handle a situation in which a service is down. A method for example is the fallback method. Basically if the call to a service fails
+another method is called with hardcoded results.
+- A circuit breaker named hystrix was introduced that was offering all that i mentioned above. The implementation was a bit hard because of all the different versions
+of spring boot and spring cloud.
